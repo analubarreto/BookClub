@@ -1,10 +1,16 @@
-@font-face {
-  font-family: customFonts;
-  src: url("https://use.typekit.net/hcd8vgd.css");
+@import url("https://use.typekit.net/hcd8vgd.css");
+
+* {
+  font-family: skolar-sans-latin, sans-serif;
 }
 
-html {
-  font-family: "skolar-sans-latin", sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: oxtail, serif;
 }
 
 // Break points
@@ -12,7 +18,6 @@ $phone-width: 375px;
 $tablet-width: 768px;
 $desktop-width: 1024px;
 
-  
 // Media queries
 @mixin phone {
   @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width - 1px}) {
@@ -31,4 +36,3 @@ $desktop-width: 1024px;
     @content;
   }
 }
-

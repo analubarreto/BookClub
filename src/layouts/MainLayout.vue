@@ -6,7 +6,7 @@
         <q-toolbar-title>
           <a
             href="/"
-            class="link"
+            class="link app-title"
           >Book Club</a>
         </q-toolbar-title>
 
@@ -81,6 +81,10 @@ export default {
   width: 375px;
 }
 
+a.app-title {
+  font-family: oxtail, serif;
+  font-size: 30px;
+}
 .link {
   text-decoration: none;
   color: $secondary;
