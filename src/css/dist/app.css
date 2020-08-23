@@ -1,0 +1,7 @@
+@font-face {
+  font-family: customFonts;
+  src: url("https://use.typekit.net/hcd8vgd.css");
+}
+html {
+  font-family: "skolar-sans-latin", sans-serif;
+}
