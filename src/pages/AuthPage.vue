@@ -1,6 +1,16 @@
 <template>
   <q-page class="page">
-    <q-card class="auth-card absolute-center">
+    <div
+      v-if="!register"
+      class="float-left welcome"
+    >
+      <welcome-register />
+    </div>
+
+    <q-card
+      class="auth-card absolute-center"
+      v-else
+    >
       <q-tabs
         v-model="tab"
         class="tab-title-color"
@@ -35,14 +45,20 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data () {
     return {
-      tab: "login",
+      tab: "register",
     }
   },
   components: {
-    'login-register': require('components/Auth/LoginRegister.vue').default
+    'login-register': require('components/Auth/LoginRegister.vue').default,
+    'welcome-register': require('components/Auth/WelcomeRegister.vue').default
+  },
+  computed: {
+    ...mapState("auth", ["register"])
   }
 }
 </script>
@@ -56,6 +72,15 @@ export default {
     .tab-title-color {
       color: $accent;
     }
+  }
+  .text {
+    max-width: 400px;
+    font-size: 20px;
+  }
+
+  .welcome {
+    margin-left: 240px;
+    margin-top: 150px;
   }
 }
 </style>

@@ -3,11 +3,15 @@ import { auth } from "src/boot/firebase";
 import { showErrorMessage } from "src/functions/show-error-message";
 
 const state = {
-  loggedIn: false
+  loggedIn: false,
+  register: false
 };
 const mutations = {
   setLoggedIn(state, value) {
     state.loggedIn = value;
+  },
+  setRegister(state, value) {
+    state.register = value;
   }
 };
 const actions = {
@@ -51,6 +55,10 @@ const actions = {
         this.$router.replace("/auth").catch(err => {});
       }
     });
+  },
+  setRegister({ commit }) {
+    console.log("hey!");
+    commit("setRegister", true);
   }
 };
 const getters = {};

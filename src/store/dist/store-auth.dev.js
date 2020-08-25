@@ -14,11 +14,15 @@ var _showErrorMessage = require("src/functions/show-error-message");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
 var state = {
-  loggedIn: false
+  loggedIn: false,
+  register: false
 };
 var mutations = {
   setLoggedIn: function setLoggedIn(state, value) {
     state.loggedIn = value;
+  },
+  setRegister: function setRegister(state, value) {
+    state.register = value;
   }
 };
 var actions = {
@@ -77,6 +81,11 @@ var actions = {
         _this.$router.replace("/auth")["catch"](function (err) {});
       }
     });
+  },
+  setRegister: function setRegister(_ref4) {
+    var commit = _ref4.commit;
+    console.log("hey!");
+    commit("setRegister", true);
   }
 };
 var getters = {};

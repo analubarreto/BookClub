@@ -34,17 +34,23 @@
           color="white"
           icon-right="account_circle"
           label="Login"
-          class="q-ml-xl"
+          class="q-ml-xl text-capitalize"
         />
         <q-btn
           @click="logoutUser"
-          v-else
+          v-else-if="loggedIn"
           flat
           color="white"
-          icon-right="account_circle"
           label="Logout"
-          class="q-ml-xl"
-        />
+          class="q-ml-xl text-capitalize"
+        >
+          <q-avatar size="42px">
+            <img
+              class="q-ml-md"
+              src="https://cdn.quasar.dev/img/avatar2.jpg"
+            >
+          </q-avatar>
+        </q-btn>
 
       </q-toolbar>
     </q-header>
