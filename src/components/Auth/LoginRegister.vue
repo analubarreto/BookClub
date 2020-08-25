@@ -34,8 +34,7 @@
 
     <q-btn
       v-if="tab === 'login'"
-      label="Forgot password?"
-      type="submit"
+      label="Forgot your password?"
       color="primary"
       class="text-capitalize q-mb-lg"
       flat
