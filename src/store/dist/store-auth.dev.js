@@ -47,7 +47,7 @@ var actions = {
   logoutUser: function logoutUser() {
     _firebase.auth.signOut();
   },
-  handleStateChage: function handleStateChage(_ref3) {
+  handleAuthStateChange: function handleAuthStateChange(_ref3) {
     var _this = this;
 
     var commit = _ref3.commit,
@@ -61,16 +61,13 @@ var actions = {
 
         _quasar.LocalStorage.set("loggedIn", true);
 
-        _this.$router.push("/")["catch"](function (err) {});
+        _this.$router.push("/profile");
 
         dispatch("books/firebaseRead", null, {
           root: true
         });
       } else {
         commit("books/clearBooks", null, {
-          root: true
-        });
-        commit("books/setBooksDownloaded", false, {
           root: true
         });
         commit("setLoggedIn", false);

@@ -63,7 +63,7 @@ module.exports = function(/* ctx */) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: false,
-      port: 3000,
+      port: 8080,
       open: true // opens browser window automatically
     },
 
@@ -71,7 +71,11 @@ module.exports = function(/* ctx */) {
     framework: {
       iconSet: "material-icons", // Quasar icon set
       lang: "en-us", // Quasar language pack
-      config: {},
+      config: {
+        loading: {
+          message: "We are getting everything ready for you"
+        }
+      },
 
       // Possible values for "importStrategy":
       // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives

@@ -36,17 +36,16 @@ const actions = {
   logoutUser() {
     auth.signOut();
   },
-  handleStateChage({ commit, dispatch }) {
+  handleAuthStateChange({ commit, dispatch }) {
     auth.onAuthStateChanged(user => {
       Loading.hide();
       if (user) {
         commit("setLoggedIn", true);
         LocalStorage.set("loggedIn", true);
-        this.$router.push("/").catch(err => {});
+        this.$router.push("/profile");
         dispatch("books/firebaseRead", null, { root: true });
       } else {
         commit("books/clearBooks", null, { root: true });
-        commit("books/setBooksDownloaded", false, { root: true });
         commit("setLoggedIn", false);
         LocalStorage.set("loggedIn", false);
         this.$router.replace("/auth").catch(err => {});
