@@ -19,13 +19,6 @@ var routes = [{
     });
   },
   children: [{
-    path: "",
-    component: function component() {
-      return Promise.resolve().then(function () {
-        return _interopRequireWildcard(require("pages/HomePage.vue"));
-      });
-    }
-  }, {
     path: "/books",
     component: function component() {
       return Promise.resolve().then(function () {
