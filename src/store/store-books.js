@@ -1,42 +1,129 @@
+import Vue from "vue";
+import { uid, Notify } from "quasar";
+import { database, auth } from "boot/firebase";
+
 const state = {
-  books: {
-    // some code here
-  },
+  books: {},
   search: "",
-  sort: ""
+  sort: "",
+  booksDownloaded: false
 };
 const mutations = {
   updateBook(state, payload) {
-    // some code here
+    Object.assign(state.books[payload.id], payload.updates);
   },
   deleteBook(state, id) {
-    // some code here
+    Vue.delete(state.books, id);
   },
   addBook(state, payload) {
-    // some code here
+    Vue.set(state.books, payload.id, payload.book);
   },
   setSearch(state, value) {
-    // some code here
+    state.search = value;
   },
   setSort(state, value) {
-    // some code here
+    state.sort = value;
+  },
+  setBooksDownloaded(state, value) {
+    state.tasksDownloaded = value;
+  },
+  clearBooks(state) {
+    state.books = {};
   }
 };
 const actions = {
-  updateBook({ commit }, payload) {
-    // some code here
+  updateBook({ dispatch }, payload) {
+    dispatch("firebaseUpdate", payload);
   },
-  deleteBook({ commit }, id) {
-    // some code here
+  deleteBook({ dispatch }, id) {
+    dispatch("firebaseDelete", id);
   },
-  addBook({ commit }, book) {
-    // some code here
+  addBook({ dispatch }, book) {
+    const bookId = uid();
+    const payload = {
+      id: bookId,
+      book: book
+    };
+    dispatch("firebaseAdd", payload);
   },
   setSearch({ commit }, value) {
-    // some code here
+    commit("setSearch", value);
   },
   firebaseReadData({ commit }) {
-    // some code here
+    commit("setSort", value);
+  },
+  // Read from firebase - will read each change made to firebase database
+  firebaseRead({ commit }) {
+    const userId = auth.currentUser.uid;
+    const userBooks = database.ref(`books/${userId}`);
+
+    // Check if data exists
+    userBooks.once(
+      "value",
+      snapshot => {
+        commit("setBooksDownloaded", true);
+      },
+      error => {
+        showErrorMessage(error.message);
+        this.$router.replace("/auth");
+      }
+    );
+
+    // child added hook
+    userBooks.on("child_added", snapshot => {
+      const book = snapshot.val();
+
+      const payload = {
+        id: snapshot.key,
+        task: task
+      };
+
+      commit("addBook", payload);
+    });
+
+    // child removed
+    userBooks.on("child_removed", snapshot => {
+      const bookId = snapshot.key;
+
+      commit("deleteBook", bookId);
+    });
+  },
+
+  // write to firebase - will write changes to firebase database
+  firebaseAdd({}, payload) {
+    const userId = auth.currentUser.uid;
+    const bookRef = database.ref(`books/${userId}/${payload.id}`);
+    bookRef.set(payload.book, error => {
+      if (error) {
+        showErrorMessage(error.message);
+      } else {
+        Notify.create("Book added");
+      }
+    });
+  },
+
+  firebaseUpdate({}) {
+    const userId = auth.currentUser.uid;
+    const bookRef = database.ref(`books/${userId}/${payload.id}`);
+    bookRef.update(payload.book, error => {
+      if (error) {
+        showErrorMessage(error.message);
+      } else {
+        Notify.create("Book updated");
+      }
+    });
+  },
+
+  firebaseDelete({}, bookId) {
+    const userId = auth.currentUser.uid;
+    const bookRef = database.ref(`books/${userId}/${bookId}`);
+    bookRef.remove(error => {
+      if (error) {
+        showErrorMessage(error.message);
+      } else {
+        Notify.create("Book deleted");
+      }
+    });
   }
 };
 const getters = {
