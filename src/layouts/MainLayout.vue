@@ -36,6 +36,7 @@
           icon-right="account_circle"
           label="Login"
           class="q-ml-xl text-capitalize"
+          @click="setRegister"
         />
         <q-btn
           @click="logoutUser"
@@ -77,7 +78,7 @@ export default {
     ...mapState("auth", ["loggedIn"])
   },
   methods: {
-    ...mapActions("auth", ["logoutUser"]),
+    ...mapActions("auth", ["logoutUser", "setRegister"]),
     openURL
   }
 }

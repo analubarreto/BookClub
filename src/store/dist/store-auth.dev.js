@@ -15,8 +15,8 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 
 var state = {
   loggedIn: false,
-  register: true,
-  forgotPassword: true
+  register: false,
+  forgotPassword: false
 };
 var mutations = {
   setLoggedIn: function setLoggedIn(state, value) {

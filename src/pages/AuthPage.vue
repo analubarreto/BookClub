@@ -57,7 +57,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data () {
     return {
-      tab: "login",
+      tab: "register",
     }
   },
   components: {
