@@ -15,6 +15,7 @@
         <div class="q-mr-xl">
           <q-btn-toggle
             v-model="model"
+            no-caps
             flat
             stretch
             class="link"

@@ -1,5 +1,8 @@
 <template>
-  <q-page class="page">
+  <q-page
+    class="page"
+    padding
+  >
     <div
       v-if="!register"
       class="float-left welcome"
@@ -41,24 +44,32 @@
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
+
+    <q-dialog v-model="forgotPassword">
+      <lost-password />
+    </q-dialog>
   </q-page>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   data () {
     return {
-      tab: "register",
+      tab: "login",
     }
   },
   components: {
     'login-register': require('components/Auth/LoginRegister.vue').default,
-    'welcome-register': require('components/Auth/WelcomeRegister.vue').default
+    'welcome-register': require('components/Auth/WelcomeRegister.vue').default,
+    'lost-password': require('components/Auth/Modals/LostPasswordModal.vue').default,
+  },
+  methods: {
+    ...mapActions("auth", ["setForgotPassword"])
   },
   computed: {
-    ...mapState("auth", ["register"])
+    ...mapState("auth", ["register", "forgotPassword"])
   }
 }
 </script>

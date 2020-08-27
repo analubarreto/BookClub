@@ -15,7 +15,8 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 
 var state = {
   loggedIn: false,
-  register: false
+  register: true,
+  forgotPassword: true
 };
 var mutations = {
   setLoggedIn: function setLoggedIn(state, value) {
@@ -23,6 +24,9 @@ var mutations = {
   },
   setRegister: function setRegister(state, value) {
     state.register = value;
+  },
+  setForgotPassword: function setForgotPassword(state, value) {
+    state.forgotPassword = value;
   }
 };
 var actions = {
@@ -84,8 +88,16 @@ var actions = {
   },
   setRegister: function setRegister(_ref4) {
     var commit = _ref4.commit;
-    console.log("hey!");
     commit("setRegister", true);
+  },
+  setForgotPassword: function setForgotPassword(_ref5) {
+    var commit = _ref5.commit;
+
+    if (this.forgotPassword === false) {
+      commit("setForgotPassword", true);
+    } else {
+      commit("setForgotPassword", false);
+    }
   }
 };
 var getters = {};

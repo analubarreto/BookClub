@@ -4,7 +4,8 @@ import { showErrorMessage } from "src/functions/show-error-message";
 
 const state = {
   loggedIn: false,
-  register: false
+  register: true,
+  forgotPassword: true
 };
 const mutations = {
   setLoggedIn(state, value) {
@@ -12,6 +13,9 @@ const mutations = {
   },
   setRegister(state, value) {
     state.register = value;
+  },
+  setForgotPassword(state, value) {
+    state.forgotPassword = value;
   }
 };
 const actions = {
@@ -57,8 +61,14 @@ const actions = {
     });
   },
   setRegister({ commit }) {
-    console.log("hey!");
     commit("setRegister", true);
+  },
+  setForgotPassword({ commit }) {
+    if (this.forgotPassword === false) {
+      commit("setForgotPassword", true);
+    } else {
+      commit("setForgotPassword", false);
+    }
   }
 };
 const getters = {};
