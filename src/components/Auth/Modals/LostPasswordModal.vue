@@ -21,6 +21,7 @@
         <q-btn
           label="Save"
           color="primary"
+          text-color="secondary"
           type="submit"
           @click="sendEmail(formData.email)"
           no-caps
@@ -29,6 +30,7 @@
         <q-btn
           label="Cancel"
           color="primary"
+          text-color="secondary"
           class="float-right"
           outline
           @click="setForgotPassword"

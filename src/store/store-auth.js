@@ -24,7 +24,10 @@ const actions = {
     auth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then(() => {
-        Notify.create("Your account was created, please check your e-mail");
+        Notify.create({
+          type: "positive",
+          message: "Your account was created, please check your e-mail"
+        });
       })
       .catch(error => {
         showErrorMessage(error.message);
@@ -35,7 +38,10 @@ const actions = {
     auth
       .signInWithEmailAndPassword(payload.email, payload.password)
       .then(() => {
-        Notify.create("You're signed in");
+        Notify.create({
+          type: "info",
+          message: "You're signed in"
+        });
       })
       .catch(error => {
         showErrorMessage(error.message);

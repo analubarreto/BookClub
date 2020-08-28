@@ -36,7 +36,10 @@ var actions = {
     _quasar.Loading.show();
 
     _firebase.auth.createUserWithEmailAndPassword(payload.email, payload.password).then(function () {
-      _quasar.Notify.create("Your account was created, please check your e-mail");
+      _quasar.Notify.create({
+        type: "positive",
+        message: "Your account was created, please check your e-mail"
+      });
     })["catch"](function (error) {
       (0, _showErrorMessage.showErrorMessage)(error.message);
     });
@@ -47,7 +50,10 @@ var actions = {
     _quasar.Loading.show();
 
     _firebase.auth.signInWithEmailAndPassword(payload.email, payload.password).then(function () {
-      _quasar.Notify.create("You're signed in");
+      _quasar.Notify.create({
+        type: "info",
+        message: "You're signed in"
+      });
     })["catch"](function (error) {
       (0, _showErrorMessage.showErrorMessage)(error.message);
     });

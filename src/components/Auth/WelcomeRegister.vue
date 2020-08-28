@@ -5,6 +5,7 @@
     <q-btn
       label="Register"
       color="primary"
+      text-color="secondary"
       class="text-capitalize q-mb-lg btn"
       @click="setRegister"
     />

@@ -45,6 +45,7 @@
       :label="tab"
       type="submit"
       color="primary"
+      text-color="secondary"
       class="float-right text-capitalize q-mb-lg"
     />
   </form>
@@ -75,10 +76,10 @@ export default {
       this.$refs.password.validate()
       if (!this.$refs.email.hasError && !this.$refs.password.hasError) {
         if (this.tab == 'login') {
-          this.loginUser(this.formData)
+          this.loginUser(this.formData);
         }
         else {
-          this.registerUser(this.formData)
+          this.registerUser(this.formData);
         }
       }
     }
