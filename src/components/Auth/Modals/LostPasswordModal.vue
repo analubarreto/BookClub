@@ -30,7 +30,6 @@
         <q-btn
           label="Cancel"
           color="primary"
-          text-color="secondary"
           class="float-right"
           outline
           @click="setForgotPassword"
@@ -43,6 +42,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { Notify } from 'quasar';
 
 export default {
   data () {
@@ -60,6 +60,12 @@ export default {
     },
     sendEmail (mail) {
       console.log(mail);
+      Notify.create({
+        type: "info",
+        message: "An e-mail with directions was sent to you, please check it",
+        position: "top"
+      });
+      this.setForgotPassword();
     },
     ...mapActions("auth", ["setForgotPassword"])
   },
