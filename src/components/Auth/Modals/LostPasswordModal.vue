@@ -1,6 +1,6 @@
 <template>
   <q-card class="modal q-pa-lg">
-    <form>
+    <div>
       <q-card-section class="row items-center q-pb-none">
         <div class="text-h6 float-left">Forgot your password? No problem! Let's recover it!</div>
         <q-space />
@@ -35,7 +35,7 @@
           no-caps
         />
       </q-card-section>
-    </form>
+    </div>
   </q-card>
 </template>
 
