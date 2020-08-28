@@ -64,7 +64,7 @@ const actions = {
     commit("setRegister", true);
   },
   setForgotPassword({ commit }) {
-    if (this.forgotPassword === false) {
+    if (state.forgotPassword === false) {
       commit("setForgotPassword", true);
     } else {
       commit("setForgotPassword", false);

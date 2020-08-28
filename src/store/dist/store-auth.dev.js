@@ -93,7 +93,7 @@ var actions = {
   setForgotPassword: function setForgotPassword(_ref5) {
     var commit = _ref5.commit;
 
-    if (this.forgotPassword === false) {
+    if (state.forgotPassword === false) {
       commit("setForgotPassword", true);
     } else {
       commit("setForgotPassword", false);
