@@ -18,8 +18,7 @@
             no-caps
             flat
             stretch
-            class="link"
-            toggle-color="yellow"
+            toggle-color="accent"
             :options="[
             {label: 'Profile', value: 'profile', to:'/profile'},
             {label: 'Books', value: 'books', to: '/books'},
