@@ -75,6 +75,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "src/css/mixins.scss";
 .page {
   background-color: $secondary;
   .auth-card {
@@ -84,14 +85,19 @@ export default {
       color: $accent;
     }
   }
-  .text {
-    max-width: 400px;
-    font-size: 20px;
-  }
-
   .welcome {
     margin-left: 240px;
     margin-top: 150px;
+
+    @include phone {
+      margin-left: 0;
+      margin-top: 0;
+    }
+
+    @include tablet {
+      margin-left: 0;
+      margin-top: 0;
+    }
   }
 }
 </style>
