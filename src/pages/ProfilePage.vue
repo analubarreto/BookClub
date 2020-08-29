@@ -30,17 +30,25 @@ export default {
 </script>
 
 <style lang="scss">
+@import "src/css/mixins.scss";
 .page {
   background-color: $secondary;
   .image {
     width: 500px;
     height: 500px;
     border-radius: 15%;
-    color: #000;
+    color: #fff;
   }
-
   .user-data {
     font-size: 25px;
+    @include phone {
+      font-size: 20px;
+      margin-left: 120px;
+    }
+
+    @include tablet {
+      margin-left: 100px;
+    }
 
     .wishlist {
       color: #6c7194;
@@ -49,6 +57,15 @@ export default {
         color: #939bcc;
         cursor: pointer;
       }
+    }
+  }
+  .column {
+    margin-top: 200px;
+    @include phone {
+      margin-top: 0;
+    }
+    @include tablet {
+      margin-top: 0;
     }
   }
 }

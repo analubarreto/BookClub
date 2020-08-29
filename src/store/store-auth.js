@@ -26,7 +26,8 @@ const actions = {
       .then(() => {
         Notify.create({
           type: "positive",
-          message: "Your account was created, please check your e-mail"
+          message: "Your account was created, please check your e-mail",
+          position: "top"
         });
       })
       .catch(error => {
@@ -40,7 +41,8 @@ const actions = {
       .then(() => {
         Notify.create({
           type: "info",
-          message: "You're signed in"
+          message: "You're signed in",
+          position: "top"
         });
       })
       .catch(error => {
