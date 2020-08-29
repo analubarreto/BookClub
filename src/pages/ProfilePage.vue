@@ -18,6 +18,12 @@
             />
             Wishlist</p>
         </span>
+        <q-btn
+          color="primary"
+          text-color="secondary"
+          label="Edit"
+          class="text-capitalize"
+        />
       </div>
     </main>
   </q-page>
@@ -34,16 +40,29 @@ export default {
 .page {
   background-color: $secondary;
   .image {
-    width: 500px;
-    height: 500px;
-    border-radius: 15%;
-    color: #fff;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 5%;
+    background: #fff;
+    bottom: 25%;
+    margin-right: 100px;
+
+    @include phone {
+      margin-left: 50px;
+      margin-right: 0;
+    }
+
+    @include tablet {
+      margin-left: 100px;
+      margin-right: 0;
+    }
   }
   .user-data {
     font-size: 25px;
     @include phone {
       font-size: 20px;
-      margin-left: 120px;
+      margin-left: 80px;
     }
 
     @include tablet {
