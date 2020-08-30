@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var state = {
-  editUser: false
+  editUser: true
 };
 var mutations = {
   setEditUser: function setEditUser(state, value) {
@@ -15,11 +15,16 @@ var mutations = {
 var actions = {
   setEditUser: function setEditUser(_ref) {
     var commit = _ref.commit;
+    console.log("Before if: ".concat(state.editUser));
 
     if (!state.editUser) {
+      console.log("Before if commit: ".concat(state.editUser));
       commit("setEditUser", true);
+      console.log("After if commit: ".concat(state.editUser));
     } else {
+      console.log("Before else commit: ".concat(state.editUser));
       commit("setEditUser", false);
+      console.log("After else commit: ".concat(state.editUser));
     }
   }
 };

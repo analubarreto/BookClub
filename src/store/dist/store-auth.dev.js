@@ -77,7 +77,9 @@ var actions = {
 
         _quasar.LocalStorage.set("loggedIn", true);
 
-        _this.$router.push("/profile");
+        _this.$router.push("/profile")["catch"](function (err) {
+          return err;
+        });
 
         dispatch("books/firebaseRead", null, {
           root: true
@@ -100,12 +102,7 @@ var actions = {
   },
   setForgotPassword: function setForgotPassword(_ref5) {
     var commit = _ref5.commit;
-
-    if (state.forgotPassword === false) {
-      commit("setForgotPassword", true);
-    } else {
-      commit("setForgotPassword", false);
-    }
+    !state.forgotPassword ? commit("setForgotPassword", true) : commit("setForgotPassword", false);
   }
 };
 var getters = {};

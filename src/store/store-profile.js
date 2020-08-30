@@ -1,5 +1,5 @@
 const state = {
-  editUser: false
+  editUser: true
 };
 
 const mutations = {
@@ -9,10 +9,15 @@ const mutations = {
 };
 const actions = {
   setEditUser({ commit }) {
+    console.log(`Before if: ${state.editUser}`);
     if (!state.editUser) {
+      console.log(`Before if commit: ${state.editUser}`);
       commit("setEditUser", true);
+      console.log(`After if commit: ${state.editUser}`);
     } else {
+      console.log(`Before else commit: ${state.editUser}`);
       commit("setEditUser", false);
+      console.log(`After else commit: ${state.editUser}`);
     }
   }
 };

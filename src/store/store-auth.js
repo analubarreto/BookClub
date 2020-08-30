@@ -58,7 +58,7 @@ const actions = {
       if (user) {
         commit("setLoggedIn", true);
         LocalStorage.set("loggedIn", true);
-        this.$router.push("/profile");
+        this.$router.push("/profile").catch(err => err);
         dispatch("books/firebaseRead", null, { root: true });
       } else {
         commit("books/clearBooks", null, { root: true });
@@ -72,11 +72,9 @@ const actions = {
     commit("setRegister", true);
   },
   setForgotPassword({ commit }) {
-    if (state.forgotPassword === false) {
-      commit("setForgotPassword", true);
-    } else {
-      commit("setForgotPassword", false);
-    }
+    !state.forgotPassword
+      ? commit("setForgotPassword", true)
+      : commit("setForgotPassword", false);
   }
 };
 const getters = {};

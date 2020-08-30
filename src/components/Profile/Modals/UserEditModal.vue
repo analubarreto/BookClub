@@ -48,7 +48,7 @@
 import { mapActions } from "vuex";
 export default {
   methods: {
-    ...mapActions("profile", ["setEditUser"])
+    ...mapActions("profile", ["setEditUser"]),
   },
   components: {
     "pwd-input": require("src/components/Shared/ModalPasswordInput").default,

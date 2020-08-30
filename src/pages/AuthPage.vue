@@ -45,7 +45,7 @@
       </q-tab-panels>
     </q-card>
 
-    <q-dialog v-model="forgotPassword">
+    <q-dialog :value.sync="forgotPassword">
       <lost-password />
     </q-dialog>
   </q-page>

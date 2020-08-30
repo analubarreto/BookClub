@@ -26,7 +26,7 @@
         />
       </div>
     </main>
-    <q-dialog v-model="editUser">
+    <q-dialog :value.sync="editUser">
       <user-edit />
     </q-dialog>
   </q-page>
