@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var state = {
-  editUser: true
+  editUser: false
 };
 var mutations = {
   setEditUser: function setEditUser(state, value) {
-    state.setEditUser = value;
+    state.editUser = value;
   }
 };
 var actions = {

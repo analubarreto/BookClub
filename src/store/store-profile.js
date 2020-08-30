@@ -1,10 +1,10 @@
 const state = {
-  editUser: true
+  editUser: false
 };
 
 const mutations = {
   setEditUser(state, value) {
-    state.setEditUser = value;
+    state.editUser = value;
   }
 };
 const actions = {
