@@ -37,15 +37,7 @@
           class="q-ml-xl text-capitalize"
           @click="setRegister"
         />
-        <q-btn
-          @click="logoutUser"
-          v-else-if="loggedIn"
-          flat
-          color="white"
-          icon-right="account_circle"
-          label="Logout"
-          class="q-ml-xl text-capitalize"
-        />
+        <dropdown-btn v-else-if="loggedIn" />
 
       </q-toolbar>
     </q-header>
@@ -57,11 +49,9 @@
 </template>
 
 <script>
-import { openURL } from 'quasar';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  name: 'MainLayout',
   data () {
     return {
       model: ''
@@ -72,7 +62,6 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["logoutUser", "setRegister"]),
-    openURL
   },
   components: {
     "dropdown-btn": require("src/components/Layout/DropdownBtn").default
