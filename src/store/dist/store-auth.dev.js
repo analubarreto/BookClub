@@ -77,9 +77,14 @@ var actions = {
 
         _quasar.LocalStorage.set("loggedIn", true);
 
-        _this.$router.push("/profile")["catch"](err);
+        _this.$router.push("/profile")["catch"](function (err) {
+          return err;
+        });
 
-        dispatch("books/firebaseRead", null, {
+        dispatch("books/fbReadBooks", null, {
+          root: true
+        });
+        dispatch("profile/fbReadUser", null, {
           root: true
         });
       } else {

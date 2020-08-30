@@ -1,15 +1,15 @@
 <template>
   <form @submit.prevent="submitForm">
     <q-input
-      outlined
       v-model="formData.email"
       ref="email"
       label="E-mail"
-      lazy-rules
       placeholder="something@gmail.com"
-      :hint="tab === 'register' ? 'Your e-mail must have an @ and a .com' : 'Your registered e-mail'"
       class="q-mb-lg q-mt-sm"
+      :hint="tab === 'register' ? 'Your e-mail must have an @ and a .com' : 'Your registered e-mail'"
       :rules="[ val => isValidEmailAddress(val) || 'Please enter a valid email address.']"
+      outlined
+      lazy-rules
     />
 
     <q-input

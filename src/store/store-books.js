@@ -25,7 +25,7 @@ const mutations = {
     state.sort = value;
   },
   setBooksDownloaded(state, value) {
-    state.tasksDownloaded = value;
+    state.booksDownloaded = value;
   },
   clearBooks(state) {
     state.books = {};
@@ -53,7 +53,7 @@ const actions = {
     commit("setSort", value);
   },
   // Read from firebase - will read each change made to firebase database
-  firebaseRead({ commit }) {
+  fbReadBooks({ commit }) {
     const userId = auth.currentUser.uid;
     const userBooks = database.ref(`books/${userId}`);
 
@@ -75,7 +75,7 @@ const actions = {
 
       const payload = {
         id: snapshot.key,
-        task: task
+        book: book
       };
 
       commit("addBook", payload);

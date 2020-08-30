@@ -2,11 +2,16 @@
   <q-page class="page">
     <main class="row absolute-center">
       <div class="column">
-        <div class="image" />
+        <!-- <div  /> -->
+        <img
+          :src="this.userDetails.image"
+          class="image"
+          alt=""
+        >
       </div>
       <div class="column">
-        <p class="user-data">Lucifer Morning Star</p>
-        <p class="user-data">lucifermorningstart@gmail.com</p>
+        <p class="user-data">{{ this.userDetails.name }}</p>
+        <p class="user-data">{{ this.userDetails.email }}</p>
         <q-btn
           color="primary"
           icon="grade"
@@ -35,19 +40,11 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  data () {
-    return {
-      // editUser: false,
-    }
-  },
   computed: {
-    ...mapState("profile", ["editUser"]),
+    ...mapState("profile", ["editUser", "userDetails"]),
   },
   methods: {
     ...mapActions("profile", ["setEditUser"])
-    // setEditUser () {
-    //   this.editUser = !this.editUser;
-    // }
   },
   components: {
     "user-edit": require("src/components/Profile/Modals/UserEditModal").default
@@ -64,7 +61,7 @@ export default {
     width: 300px;
     height: 300px;
     border-radius: 5%;
-    background: #fff;
+    // background: #fff;
     bottom: 25%;
     margin-right: 100px;
 

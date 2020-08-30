@@ -6,9 +6,10 @@
     :hint="label == 'Password' ? 'Your current password' : 'Your new password must have at least 6 characters'"
     class="q-mb-lg"
     label-color="primary"
-    :rules="[ val => val.length >= 6 || 'Please enter at least 6 characters.']"
+    :rules="[ val => val.length >= 3 || 'Please use at least 3 characters']"
     lazy-rules
     outlined
+    dense
   >
     <template v-slot:append>
       <q-icon

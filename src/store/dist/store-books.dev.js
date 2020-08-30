@@ -11,9 +11,13 @@ var _quasar = require("quasar");
 
 var _firebase = require("boot/firebase");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+function _objectDestructuringEmpty(obj) {
+  if (obj == null) throw new TypeError("Cannot destructure undefined");
+}
 
 var state = {
   books: {},
@@ -38,7 +42,7 @@ var mutations = {
     state.sort = value;
   },
   setBooksDownloaded: function setBooksDownloaded(state, value) {
-    state.tasksDownloaded = value;
+    state.booksDownloaded = value;
   },
   clearBooks: function clearBooks(state) {
     state.books = {};
@@ -71,7 +75,7 @@ var actions = {
     commit("setSort", value);
   },
   // Read from firebase - will read each change made to firebase database
-  firebaseRead: function firebaseRead(_ref6) {
+  fbReadBooks: function fbReadBooks(_ref6) {
     var _this = this;
 
     var commit = _ref6.commit;
@@ -79,25 +83,28 @@ var actions = {
 
     var userBooks = _firebase.database.ref("books/".concat(userId)); // Check if data exists
 
+    userBooks.once(
+      "value",
+      function(snapshot) {
+        commit("setBooksDownloaded", true);
+      },
+      function(error) {
+        showErrorMessage(error.message);
 
-    userBooks.once("value", function (snapshot) {
-      commit("setBooksDownloaded", true);
-    }, function (error) {
-      showErrorMessage(error.message);
+        _this.$router.replace("/auth");
+      }
+    ); // child added hook
 
-      _this.$router.replace("/auth");
-    }); // child added hook
-
-    userBooks.on("child_added", function (snapshot) {
+    userBooks.on("child_added", function(snapshot) {
       var book = snapshot.val();
       var payload = {
         id: snapshot.key,
-        task: task
+        book: book
       };
       commit("addBook", payload);
     }); // child removed
 
-    userBooks.on("child_removed", function (snapshot) {
+    userBooks.on("child_removed", function(snapshot) {
       var bookId = snapshot.key;
       commit("deleteBook", bookId);
     });
@@ -108,9 +115,11 @@ var actions = {
 
     var userId = _firebase.auth.currentUser.uid;
 
-    var bookRef = _firebase.database.ref("books/".concat(userId, "/").concat(payload.id));
+    var bookRef = _firebase.database.ref(
+      "books/".concat(userId, "/").concat(payload.id)
+    );
 
-    bookRef.set(payload.book, function (error) {
+    bookRef.set(payload.book, function(error) {
       if (error) {
         showErrorMessage(error.message);
       } else {
@@ -123,9 +132,11 @@ var actions = {
 
     var userId = _firebase.auth.currentUser.uid;
 
-    var bookRef = _firebase.database.ref("books/".concat(userId, "/").concat(payload.id));
+    var bookRef = _firebase.database.ref(
+      "books/".concat(userId, "/").concat(payload.id)
+    );
 
-    bookRef.update(payload.book, function (error) {
+    bookRef.update(payload.book, function(error) {
       if (error) {
         showErrorMessage(error.message);
       } else {
@@ -138,9 +149,11 @@ var actions = {
 
     var userId = _firebase.auth.currentUser.uid;
 
-    var bookRef = _firebase.database.ref("books/".concat(userId, "/").concat(bookId));
+    var bookRef = _firebase.database.ref(
+      "books/".concat(userId, "/").concat(bookId)
+    );
 
-    bookRef.remove(function (error) {
+    bookRef.remove(function(error) {
       if (error) {
         showErrorMessage(error.message);
       } else {
@@ -150,9 +163,11 @@ var actions = {
   }
 };
 var getters = {
-  booksSorted: function booksSorted(state) {// some code here
+  booksSorted: function booksSorted(state) {
+    // some code here
   },
-  booksFiltered: function booksFiltered(state) {// some code here
+  booksFiltered: function booksFiltered(state) {
+    // some code here
   }
 };
 var _default = {

@@ -58,8 +58,9 @@ const actions = {
       if (user) {
         commit("setLoggedIn", true);
         LocalStorage.set("loggedIn", true);
-        this.$router.push("/profile").catch(err);
-        dispatch("books/firebaseRead", null, { root: true });
+        this.$router.push("/profile").catch(err => err);
+        dispatch("books/fbReadBooks", null, { root: true });
+        dispatch("profile/fbReadUser", null, { root: true });
       } else {
         commit("books/clearBooks", null, { root: true });
         commit("setLoggedIn", false);
