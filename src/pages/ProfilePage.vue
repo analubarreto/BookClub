@@ -19,6 +19,7 @@
             Wishlist</p>
         </span>
         <q-btn
+          @click="setEditUser"
           color="primary"
           text-color="secondary"
           label="Edit"
@@ -26,12 +27,32 @@
         />
       </div>
     </main>
+    <q-dialog v-model="editUser">
+      <user-edit />
+    </q-dialog>
   </q-page>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-
+  data () {
+    return {
+      // editUser: false,
+    }
+  },
+  computed: {
+    ...mapState("profile", ["editUser"]),
+  },
+  methods: {
+    ...mapActions("profile", ["setEditUser"])
+    // setEditUser () {
+    //   this.editUser = !this.editUser;
+    // }
+  },
+  components: {
+    "user-edit": require("src/components/Profile/Modals/UserEditModal").default
+  }
 }
 </script>
 

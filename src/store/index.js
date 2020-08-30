@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import auth from "src/store/store-auth";
 import books from "src/store/store-books";
 import settings from "src/store/store-settings";
+import profile from "src/store/store-profile";
 
 Vue.use(Vuex);
 
@@ -21,7 +22,8 @@ export default function(/* { ssrContext } */) {
     modules: {
       auth,
       books,
-      settings
+      settings,
+      profile
     },
 
     // enable strict mode (adds overhead!)

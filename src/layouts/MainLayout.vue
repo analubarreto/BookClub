@@ -73,6 +73,9 @@ export default {
   methods: {
     ...mapActions("auth", ["logoutUser", "setRegister"]),
     openURL
+  },
+  components: {
+    "dropdown-btn": require("src/components/Layout/DropdownBtn").default
   }
 }
 </script>

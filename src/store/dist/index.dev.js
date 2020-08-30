@@ -15,6 +15,8 @@ var _storeBooks = _interopRequireDefault(require("src/store/store-books"));
 
 var _storeSettings = _interopRequireDefault(require("src/store/store-settings"));
 
+var _storeProfile = _interopRequireDefault(require("src/store/store-profile"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _vue["default"].use(_vuex["default"]);
@@ -35,7 +37,8 @@ function _default()
     modules: {
       auth: _storeAuth["default"],
       books: _storeBooks["default"],
-      settings: _storeSettings["default"]
+      settings: _storeSettings["default"],
+      profile: _storeProfile["default"]
     },
     // enable strict mode (adds overhead!)
     // for dev mode only
