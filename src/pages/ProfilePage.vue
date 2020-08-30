@@ -2,16 +2,16 @@
   <q-page class="page">
     <main class="row absolute-center">
       <div class="column">
-        <!-- <div  /> -->
-        <img
+        <div class="image" />
+        <!-- <img
           :src="this.userDetails.image"
           class="image"
           alt=""
-        >
+        > -->
       </div>
       <div class="column">
-        <p class="user-data">{{ this.userDetails.name }}</p>
-        <p class="user-data">{{ this.userDetails.email }}</p>
+        <p class="user-data">Ana Luiza</p>
+        <p class="user-data">analuibm@gmail.com</p>
         <q-btn
           color="primary"
           icon="grade"
@@ -61,7 +61,7 @@ export default {
     width: 300px;
     height: 300px;
     border-radius: 5%;
-    // background: #fff;
+    background: #fff;
     bottom: 25%;
     margin-right: 100px;
 
