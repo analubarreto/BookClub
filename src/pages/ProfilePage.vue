@@ -7,23 +7,22 @@
       <div class="column">
         <p class="user-data">Lucifer Morning Star</p>
         <p class="user-data">lucifermorningstart@gmail.com</p>
-        <span class="user-data">
-          <p
-            class="wishlist"
-            clickable
-          >
-            <q-icon
-              name="grade"
-              style="color: #6C7194; font-size: 1.4em;"
-            />
-            Wishlist</p>
-        </span>
+        <q-btn
+          color="primary"
+          icon="grade"
+          label="Wishlist"
+          class="q-mb-md"
+          text-color="blue"
+          no-caps
+          flat
+        />
         <q-btn
           @click="setEditUser"
           color="primary"
           text-color="secondary"
           label="Edit"
           class="text-capitalize"
+          push
         />
       </div>
     </main>
