@@ -4,8 +4,8 @@ import { showErrorMessage } from "src/functions/show-error-message";
 
 const state = {
   loggedIn: false,
-  register: false,
-  forgotPassword: false
+  register: true,
+  forgotPassword: true
 };
 const mutations = {
   setLoggedIn(state, value) {
@@ -35,6 +35,7 @@ const actions = {
       });
   },
   sendEmailVerification({}) {
+    Loading.show();
     const user = auth.currentUser;
     user
       .sendEmailVerification()
@@ -43,6 +44,21 @@ const actions = {
           type: "info",
           message:
             "A verification e-mail was sent to you, please check your e-mail",
+          position: "top"
+        });
+        Loading.hide();
+      })
+      .catch(error => {
+        showErrorMessage(error.message);
+      });
+  },
+  sendResetPasswordEmail({}, payload) {
+    auth
+      .sendPasswordResetEmail(payload.email)
+      .then(() => {
+        Notify.create({
+          type: "positive",
+          message: "An e-mail was sent to you",
           position: "top"
         });
       })

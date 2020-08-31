@@ -19,11 +19,11 @@
 
       <q-card-section>
         <q-btn
-          label="Save"
+          label="Send"
           color="primary"
           text-color="secondary"
           type="submit"
-          @click="sendEmail(formData.email)"
+          @click="sendEmail"
           no-caps
           v-close-popup
         />
@@ -58,16 +58,12 @@ export default {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(email).toLowerCase());
     },
-    sendEmail (mail) {
-      console.log(mail);
-      Notify.create({
-        type: "info",
-        message: "An e-mail with directions was sent to you, please check it",
-        position: "top"
-      });
+    sendEmail () {
+      console.log();
+      this.sendResetPasswordEmail(this.formData);
       this.setForgotPassword();
     },
-    ...mapActions("auth", ["setForgotPassword"])
+    ...mapActions("auth", ["setForgotPassword", "sendResetPasswordEmail"])
   },
 }
 </script>
