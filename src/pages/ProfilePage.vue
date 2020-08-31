@@ -35,8 +35,7 @@
             icon="eva-star"
             label="Wishlist"
             class="q-mb-md q-mt-md column"
-            text-color="blue"
-            size="lg"
+            size="md"
             no-caps
             flat
           />
@@ -47,7 +46,7 @@
             label="Edit"
             class="q-mb-md q-mt-md text-capitalize column"
             text-color="primary"
-            size="lg"
+            size="md"
             push
             flat
           />
@@ -91,8 +90,9 @@ export default {
     margin-right: 100px;
 
     @include phone {
-      margin-left: 50px;
+      margin-left: 15px;
       margin-right: 0;
+      margin-top: 170px;
     }
 
     @include tablet {
