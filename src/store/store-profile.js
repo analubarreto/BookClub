@@ -1,4 +1,6 @@
 import { auth } from "boot/firebase";
+import { Notify } from "quasar";
+import { showErrorMessage } from "src/functions/show-error-message";
 
 const state = {
   editUser: false,
@@ -20,7 +22,11 @@ const mutations = {
 };
 const actions = {
   updateUser({ dispatch }, payload) {
-    dispatch("updateUser", payload);
+    dispatch("fbUpdateUser", payload);
+  },
+
+  updateEmail({ dispatch }, payload) {
+    dispatch("fbUpdateEmail", payload);
   },
 
   setEditUser({ commit }, state) {
@@ -53,15 +59,35 @@ const actions = {
     const user = auth.currentUser;
     user
       .updateProfile({
-        displayName: payload.name,
-        photoURL: payload.photoUrl
+        displayName: payload.updates.name,
+        photoURL: payload.updates.photoUrl
       })
       .then(function() {
-        // Update successful
+        Notify.create({
+          type: "positive",
+          message: "Your data was edited",
+          position: "top"
+        });
       })
       .catch(function(err) {
-        // An error happened
+        console.log(err.message);
       });
+    console.log(user.displayName);
+    console.log(user.email);
+  },
+
+  fbUpdateEmail({}, payload) {
+    const user = auth.currentUser;
+    user;
+    user
+      .updateEmail(payload.updates.email)
+      .then(function() {
+        console.log("success");
+      })
+      .catch(function(err) {
+        showErrorMessage(err.message);
+      });
+    console.log(user.email);
   }
 };
 const getters = {

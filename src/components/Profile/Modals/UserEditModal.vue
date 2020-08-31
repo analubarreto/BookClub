@@ -48,6 +48,16 @@
             class="q-mt-xl"
             no-caps
           />
+
+          <q-btn
+            label="Cancel"
+            color="primary"
+            text-color="primary"
+            class="q-mt-xl q-ml-md"
+            @click="setEditUser"
+            flat
+            no-caps
+          />
         </form>
 
       </q-card-section>
@@ -57,15 +67,6 @@
       align="right"
       class="bg-white text-teal"
     >
-      <q-btn
-        label="Cancel"
-        color="primary"
-        text-color="secondary"
-        class="q-mt-xl"
-        @click="setEditUser"
-        flat
-        no-caps
-      />
     </q-card-actions>
   </q-card>
 </template>
@@ -77,23 +78,23 @@ import profilePicture from "src/assets/analu.jpg";
 export default {
   data () {
     return {
-      dataToSubmit: {}
+      dataToSubmit: {
+        name: "",
+        email: "",
+        photoUrl: ""
+      }
     }
   },
   methods: {
-    ...mapActions("profile", ["setEditUser", "updateUser"]),
+    ...mapActions("profile", ["setEditUser", "updateUser", "updateEmail"]),
     submitForm () {
-      console.log(this.dataToSubmit);
-      this.userData.name = "Wakanda Forever";
-      Notify.create({
-        type: "positive",
-        message: "Your data was edited",
-        position: "top"
-      });
-      // this.updateUser({
-      //   updates: this.dataToSubmit
-      // })
-      this.setEditUser;
+      this.updateUser({
+        updates: this.dataToSubmit
+      })
+      this.updateEmail({
+        updates: this.dataToSubmit
+      })
+      this.setEditUser(false)
     },
     isValidEmailAddress (email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
