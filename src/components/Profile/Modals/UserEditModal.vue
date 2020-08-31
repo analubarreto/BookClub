@@ -77,7 +77,6 @@ export default {
     submitForm () {
       console.log(this.dataToSubmit);
       this.userData.name = "Wakanda Forever";
-      this.userData.photoURL = "https://i.pinimg.com/originals/e2/66/83/e266833c8471d58a02c06de4c2f6f482.jpg";
       Notify.create({
         type: "positive",
         message: "Your data was edited",

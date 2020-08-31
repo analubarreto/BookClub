@@ -40,9 +40,10 @@ const actions = {
     if (user != null) {
       data.name = user.displayName;
       data.email = user.email;
-      data.photoUrl = user.photoURL;
-      data.emailVerified = user.emailVerified;
-      console.log(data.photoUrl);
+      // data.photoUrl = user.photoURL;
+      (data.photoUrl =
+        "https://i.pinimg.com/originals/e2/66/83/e266833c8471d58a02c06de4c2f6f482.jpg"),
+        (data.emailVerified = user.emailVerified);
       commit("setUser", data);
     } else {
       commit("setUser", null);
