@@ -23,7 +23,6 @@
             v-model="dataToSubmit.name"
             lazy-rules
             outlined
-            dense
           />
           <q-input
             ref="email"
@@ -36,10 +35,7 @@
             :rules="[ val => isValidEmailAddress(val) || 'Please enter a valid email address.']"
             outlined
             lazy-rules
-            dense
           />
-          <pwd-input label="Password" />
-          <pwd-input label="New Password" />
           <q-btn
             label="Save"
             color="primary"
@@ -48,13 +44,13 @@
             class="q-mt-xl"
             no-caps
           />
-
           <q-btn
-            label="Cancel"
-            color="primary"
-            text-color="primary"
-            class="q-mt-xl q-ml-md"
             @click="setEditUser"
+            color="primary"
+            label="Cancel"
+            class="q-mt-xl q-ml-md"
+            text-color="primary"
+            size="md"
             flat
             no-caps
           />
@@ -82,18 +78,22 @@ export default {
         name: "",
         email: "",
         photoUrl: ""
-      }
+      },
     }
   },
   methods: {
     ...mapActions("profile", ["setEditUser", "updateUser", "updateEmail"]),
     submitForm () {
-      this.updateUser({
-        updates: this.dataToSubmit
-      })
-      this.updateEmail({
-        updates: this.dataToSubmit
-      })
+      if (this.dataToSubmit.name) {
+        this.updateUser({
+          updates: this.dataToSubmit
+        })
+      }
+      if (this.dataToSubmit.email) {
+        this.updateEmail({
+          updates: this.dataToSubmit
+        })
+      }
       this.setEditUser(false)
     },
     isValidEmailAddress (email) {
@@ -104,10 +104,5 @@ export default {
   computed: {
     ...mapGetters("profile", ["userData"])
   },
-  components: {
-    "pwd-input": require("src/components/Shared/ModalPasswordInput").default,
-    "email-input": require("src/components/Shared/ModalEmailInput").default,
-    "text-input": require("src/components/Shared/ModalTextInput").default,
-  }
 }
 </script>
