@@ -22,10 +22,11 @@
             v-if="!this.userData.emailVerified"
             color="negative"
             label="Verify now"
-            class="q-ml-md"
+            class="q-ml-md verify-btn"
             text-color="white"
             size="md"
             @click="sendEmailVerification"
+            dense
           />
         </span>
 
@@ -147,6 +148,14 @@ export default {
       bottom: 70px;
       right: 0;
       left: 80px;
+    }
+  }
+
+  .verify-btn {
+    position: relative;
+    bottom: 40px;
+    @include phone {
+      width: 90px;
     }
   }
 }
