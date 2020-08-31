@@ -1,9 +1,13 @@
-import Vue from "vue";
 import { auth } from "boot/firebase";
 
 const state = {
   editUser: false,
-  userData: null
+  userData: {
+    name: "",
+    email: "",
+    photoUrl: "",
+    emailVerified: false
+  }
 };
 
 const mutations = {
@@ -15,7 +19,12 @@ const mutations = {
   }
 };
 const actions = {
-  setEditUser({ commit }) {
+  updateUser({ dispatch }) {
+    // dispatch("books/fbReadBooks", null, { root: true });
+    dispatch("updateUser", {});
+  },
+
+  setEditUser({ commit }, state) {
     !state.editUser
       ? commit("setEditUser", true)
       : commit("setEditUser", false);
@@ -24,13 +33,14 @@ const actions = {
   fbReadUser({ commit }) {
     const user = auth.currentUser;
     const data = {
-      name: "",
-      email: "",
-      photoUrl: "",
-      emailVerified: false
+      name: state.userData.name,
+      email: state.userData.email,
+      photoUrl: state.userData.photoUrl,
+      emailVerified: state.userData.emailVerified
     };
     if (user != null) {
-      data.name = user.displayName;
+      // data.name = user.displayName;
+      data.name = "Ana Luiza";
       data.email = user.email;
       data.photoUrl = user.photoURL;
       data.emailVerified = user.emailVerified;
@@ -39,6 +49,28 @@ const actions = {
     } else {
       commit("setUser", null);
     }
+  },
+
+  // update firebase user
+  fbUpdateUser({ commit }) {
+    const user = auth.currentUser;
+    const data = {
+      name: state.userData.name,
+      email: state.userData.email,
+      photoUrl: state.userData.photoUrl,
+      emailVerified: state.userData.emailVerified
+    };
+    user
+      .updateProfile({
+        displayName: "Ana Luiza",
+        photoURL: "https://example.com/jane-q-user/profile.jpg"
+      })
+      .then(function() {
+        // Update successful
+      })
+      .catch(function(err) {
+        // An error happened
+      });
   }
 };
 const getters = {
