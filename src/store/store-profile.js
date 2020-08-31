@@ -39,12 +39,12 @@ const actions = {
       emailVerified: state.userData.emailVerified
     };
     if (user != null) {
-      // data.name = user.displayName;
-      data.name = "Ana Luiza";
+      data.name = user.displayName;
+      // data.name = "Ana Luiza";
       data.email = user.email;
       data.photoUrl = user.photoURL;
       data.emailVerified = user.emailVerified;
-
+      console.log(data.photoUrl);
       commit("setUser", data);
     } else {
       commit("setUser", null);
