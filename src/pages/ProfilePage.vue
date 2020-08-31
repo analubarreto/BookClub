@@ -2,12 +2,16 @@
   <q-page class="page">
     <main class="row absolute-center">
       <div class="column">
-        <div class="image" />
-        <!-- <img
-          :src="this.userDetails.image"
+        <div
+          v-if="!userData.photoUrl"
+          class="image"
+        />
+        <img
+          v-else
+          :src="userData.photoUrl"
           class="image"
           alt=""
-        > -->
+        >
       </div>
       <div class="column">
         <p class="user-data">Name: {{ !this.userData.name ? this.userData.email : this.userData.name }}</p>

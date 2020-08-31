@@ -40,7 +40,6 @@ const actions = {
     };
     if (user != null) {
       data.name = user.displayName;
-      // data.name = "Ana Luiza";
       data.email = user.email;
       data.photoUrl = user.photoURL;
       data.emailVerified = user.emailVerified;
