@@ -8,6 +8,7 @@
     label-color="primary"
     :value="email"
     :rules="[ val => isValidEmailAddress(val) || 'Please enter a valid email address.']"
+    @input="$emit('update:email', '')"
     outlined
     lazy-rules
     dense

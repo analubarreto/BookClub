@@ -14,10 +14,40 @@
 
       <q-card-section class="column">
         <form @submit.prevent="submitForm">
-          <text-input label="Name" />
-          <email-input />
+          <q-input
+            ref="name"
+            label="Name"
+            hint="Your name must have at least 3 characters"
+            class="q-mb-lg"
+            label-color="primary"
+            v-model="dataToSubmit.name"
+            lazy-rules
+            outlined
+            dense
+          />
+          <q-input
+            ref="email"
+            label="E-mail"
+            placeholder="something@gmail.com"
+            class="q-mb-lg q-mt-sm"
+            hint="Your e-mail must have an @ and a .com"
+            label-color="primary"
+            v-model="dataToSubmit.email"
+            :rules="[ val => isValidEmailAddress(val) || 'Please enter a valid email address.']"
+            outlined
+            lazy-rules
+            dense
+          />
           <pwd-input label="Password" />
           <pwd-input label="New Password" />
+          <q-btn
+            label="Save"
+            color="primary"
+            text-color="secondary"
+            type="submit"
+            class="q-mt-xl"
+            no-caps
+          />
         </form>
 
       </q-card-section>
@@ -27,42 +57,44 @@
       align="right"
       class="bg-white text-teal"
     >
-      <q-btn
-        label="Save"
-        color="primary"
-        text-color="secondary"
-        type="submit"
-        no-caps
-      />
-      <q-btn
-        label="Cancel"
-        color="primary"
-        class="float-right"
-        outline
-        @click="setEditUser"
-        no-caps
-      />
+
     </q-card-actions>
   </q-card>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import { Notify } from "quasar";
+import profilePicture from "src/assets/analu.jpg";
 export default {
   data () {
     return {
-
+      dataToSubmit: {}
     }
   },
   methods: {
-    ...mapActions("profile", ["setEditUser", "addUserDetail"]),
+    ...mapActions("profile", ["setEditUser", "updateUser"]),
     submitForm () {
-      this.addUserDetail(this.newUserDetails);
+      console.log(this.dataToSubmit);
+      this.userData.name = "Wakanda Forever";
+      this.userData.photoURL = "https://i.pinimg.com/originals/e2/66/83/e266833c8471d58a02c06de4c2f6f482.jpg";
+      Notify.create({
+        type: "positive",
+        message: "Your data was edited",
+        position: "top"
+      });
+      // this.updateUser({
+      //   updates: this.dataToSubmit
+      // })
       this.setEditUser;
-    }
+    },
+    isValidEmailAddress (email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    },
   },
   computed: {
-    ...mapState("profile", ["userDetails"])
+    ...mapGetters("profile", ["userData"])
   },
   components: {
     "pwd-input": require("src/components/Shared/ModalPasswordInput").default,

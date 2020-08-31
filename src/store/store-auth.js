@@ -4,8 +4,8 @@ import { showErrorMessage } from "src/functions/show-error-message";
 
 const state = {
   loggedIn: false,
-  register: true,
-  forgotPassword: true
+  register: false,
+  forgotPassword: false
 };
 const mutations = {
   setLoggedIn(state, value) {

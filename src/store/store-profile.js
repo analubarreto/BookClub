@@ -19,9 +19,8 @@ const mutations = {
   }
 };
 const actions = {
-  updateUser({ dispatch }) {
-    // dispatch("books/fbReadBooks", null, { root: true });
-    dispatch("updateUser", {});
+  updateUser({ dispatch }, payload) {
+    dispatch("updateUser", payload);
   },
 
   setEditUser({ commit }, state) {
@@ -51,18 +50,12 @@ const actions = {
   },
 
   // update firebase user
-  fbUpdateUser({ commit }) {
+  fbUpdateUser({}, payload) {
     const user = auth.currentUser;
-    const data = {
-      name: state.userData.name,
-      email: state.userData.email,
-      photoUrl: state.userData.photoUrl,
-      emailVerified: state.userData.emailVerified
-    };
     user
       .updateProfile({
-        displayName: "Ana Luiza",
-        photoURL: "https://example.com/jane-q-user/profile.jpg"
+        displayName: payload.name,
+        photoURL: payload.photoUrl
       })
       .then(function() {
         // Update successful
