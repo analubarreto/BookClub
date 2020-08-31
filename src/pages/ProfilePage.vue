@@ -10,8 +10,8 @@
         > -->
       </div>
       <div class="column">
-        <p class="user-data">Ana Luiza</p>
-        <p class="user-data">analuibm@gmail.com</p>
+        <p class="user-data">{{ this.userData.name }}</p>
+        <p class="user-data">{{ this.userData.email }}</p>
         <q-btn
           color="primary"
           icon="grade"
@@ -38,10 +38,11 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapState("profile", ["editUser", "userDetails"]),
+    ...mapState("profile", ["editUser"]),
+    ...mapGetters("profile", ["userData"])
   },
   methods: {
     ...mapActions("profile", ["setEditUser"])

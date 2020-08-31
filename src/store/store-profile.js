@@ -1,17 +1,17 @@
 import Vue from "vue";
-import { uid } from "quasar";
-import { database, auth } from "boot/firebase";
+import { auth } from "boot/firebase";
 
 const state = {
-  editUser: true
+  editUser: false,
+  userData: null
 };
 
 const mutations = {
   setEditUser(state, value) {
     state.editUser = value;
   },
-  addUserDetail(state, payload) {
-    Vue.set(state.userDetails, payload.id, payload.userDetails);
+  setUser(state, data) {
+    state.userData = data;
   }
 };
 const actions = {
@@ -19,9 +19,33 @@ const actions = {
     !state.editUser
       ? commit("setEditUser", true)
       : commit("setEditUser", false);
+  },
+  // get user from firebase
+  fbReadUser({ commit }) {
+    const user = auth.currentUser;
+    const data = {
+      name: "",
+      email: "",
+      photoUrl: "",
+      emailVerified: false
+    };
+    if (user != null) {
+      data.name = user.displayName;
+      data.email = user.email;
+      data.photoUrl = user.photoURL;
+      data.emailVerified = user.emailVerified;
+
+      commit("setUser", data);
+    } else {
+      commit("setUser", null);
+    }
   }
 };
-const getters = {};
+const getters = {
+  userData: state => {
+    return state.userData;
+  }
+};
 
 export default {
   namespaced: true,
