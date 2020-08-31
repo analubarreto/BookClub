@@ -28,6 +28,7 @@
             @click="sendEmailVerification"
           />
         </span>
+
         <span class="row q-mt-lg btns">
           <q-btn
             color="primary"
@@ -35,16 +36,20 @@
             label="Wishlist"
             class="q-mb-md q-mt-md column"
             text-color="blue"
+            size="lg"
             no-caps
             flat
           />
           <q-btn
             @click="setEditUser"
             color="primary"
-            text-color="secondary"
+            icon="eva-edit"
             label="Edit"
-            class="text-capitalize column"
+            class="q-mb-md q-mt-md text-capitalize column"
+            text-color="primary"
+            size="lg"
             push
+            flat
           />
         </span>
       </div>
@@ -96,7 +101,9 @@ export default {
     }
   }
   .user-data {
+    position: relative;
     font-size: 25px;
+    bottom: 40px;
     @include phone {
       font-size: 20px;
       margin-left: 80px;
@@ -126,8 +133,21 @@ export default {
   }
 
   .btns {
-    margin-top: 50px;
-    margin-left: 90px;
+    position: relative;
+    bottom: 245px;
+    right: 15px;
+
+    @include phone {
+      bottom: 45px;
+      right: 0;
+      left: 60px;
+    }
+
+    @include tablet {
+      bottom: 70px;
+      right: 0;
+      left: 80px;
+    }
   }
 }
 </style>
