@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
+    <q-header class="larger-screen-only">
+      <q-toolbar class="constrain">
         <q-toolbar-title>
           <a
             href="/"
@@ -29,18 +29,18 @@
         <q-btn
           v-if="!loggedIn"
           to="/auth"
-          flat
           color="white"
-          icon-right="account_circle"
+          icon-right="eva-person"
           label="Login"
           class="q-ml-xl text-capitalize"
           @click="setRegister"
+          flat
         />
         <dropdown-btn v-else-if="loggedIn" />
 
       </q-toolbar>
     </q-header>
-
+    <layout-footer class="small-screen-only" />
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -63,7 +63,8 @@ export default {
     ...mapActions("auth", ["logoutUser", "setRegister"]),
   },
   components: {
-    "dropdown-btn": require("src/components/Layout/DropdownBtn").default
+    "dropdown-btn": require("src/components/Layout/DropdownBtn").default,
+    "layout-footer": require("src/components/Layout/LayoutFooter").default,
   }
 }
 </script>
