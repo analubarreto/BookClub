@@ -31,7 +31,7 @@
         <span class="row q-mt-lg btns">
           <q-btn
             color="primary"
-            icon="grade"
+            icon="eva-star"
             label="Wishlist"
             class="q-mb-md q-mt-md column"
             text-color="blue"

@@ -22,7 +22,7 @@ module.exports = function(/* ctx */) {
     css: ["app.scss"],
 
     extras: [
-      "material-icons" // optional, you are not bound to it
+      "eva-icons" // optional, you are not bound to it
     ],
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
@@ -39,7 +39,7 @@ module.exports = function(/* ctx */) {
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
-      iconSet: "material-icons", // Quasar icon set
+      iconSet: "eva-icons", // Quasar icon set
       lang: "en-us", // Quasar language pack
       config: {
         loading: {

@@ -13,7 +13,7 @@
   >
     <template v-slot:append>
       <q-icon
-        :name="isPwd ? 'visibility_off' : 'visibility'"
+        :name="isPwd ? 'eva-eye-outline' : 'eva-eye-off-outline'"
         class="cursor-pointer"
         color="primary"
         @click="isPwd = !isPwd"

@@ -12,3 +12,28 @@ h5,
 h6 {
   font-family: oxtail, serif;
 }
+
+.small-screen-only {
+  @media(max-width: $breakpoint-xs-max) {
+    display: block;
+  }
+
+  @media(min-width: $breakpoint-sm-min) {
+    display: none;
+  }
+}
+
+.larger-screen-only {
+  @media(max-width: $breakpoint-xs-max) {
+    display: none;
+  }
+
+  @media(min-width: $breakpoint-sm-min) {
+    display: block;
+  }
+}
+
+.constrain {
+  max-width: 975px;
+  margin: 0 auto;
+}

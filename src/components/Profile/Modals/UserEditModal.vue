@@ -57,7 +57,15 @@
       align="right"
       class="bg-white text-teal"
     >
-
+      <q-btn
+        label="Cancel"
+        color="primary"
+        text-color="secondary"
+        class="q-mt-xl"
+        @click="setEditUser"
+        flat
+        no-caps
+      />
     </q-card-actions>
   </q-card>
 </template>
