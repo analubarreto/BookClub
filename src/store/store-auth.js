@@ -26,7 +26,23 @@ const actions = {
       .then(() => {
         Notify.create({
           type: "positive",
-          message: "Your account was created, please check your e-mail",
+          message: "Your account was created",
+          position: "top"
+        });
+      })
+      .catch(error => {
+        showErrorMessage(error.message);
+      });
+  },
+  sendEmailVerification({}) {
+    const user = auth.currentUser;
+    user
+      .sendEmailVerification()
+      .then(() => {
+        Notify.create({
+          type: "info",
+          message:
+            "A verification e-mail was sent to you, please check your e-mail",
           position: "top"
         });
       })

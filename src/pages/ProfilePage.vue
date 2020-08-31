@@ -12,24 +12,37 @@
       <div class="column">
         <p class="user-data">Name: {{ this.userData.name }}</p>
         <p class="user-data">E-mail: {{ this.userData.email }}</p>
-        <p class="user-data">Verified: {{ !this.userData.emailVerified ? "No" : "Yes" }}</p>
-        <q-btn
-          color="primary"
-          icon="grade"
-          label="Wishlist"
-          class="q-mb-md"
-          text-color="blue"
-          no-caps
-          flat
-        />
-        <q-btn
-          @click="setEditUser"
-          color="primary"
-          text-color="secondary"
-          label="Edit"
-          class="text-capitalize"
-          push
-        />
+        <span class="row">
+          <p class="user-data">Verified: {{ !this.userData.emailVerified ? "No" : "Yes" }}</p>
+          <q-btn
+            v-if="!this.userData.emailVerified"
+            color="negative"
+            label="Verify now"
+            class="q-ml-md"
+            text-color="white"
+            size="md"
+            @click="sendEmailVerification"
+          />
+        </span>
+        <span class="row q-mt-lg btns">
+          <q-btn
+            color="primary"
+            icon="grade"
+            label="Wishlist"
+            class="q-mb-md q-mt-md column"
+            text-color="blue"
+            no-caps
+            flat
+          />
+          <q-btn
+            @click="setEditUser"
+            color="primary"
+            text-color="secondary"
+            label="Edit"
+            class="text-capitalize column"
+            push
+          />
+        </span>
       </div>
     </main>
     <q-dialog :value.sync="editUser">
@@ -43,10 +56,11 @@ import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   computed: {
     ...mapState("profile", ["editUser"]),
-    ...mapGetters("profile", ["userData"]),
+    ...mapGetters("profile", ["userData"])
   },
   methods: {
-    ...mapActions("profile", ["setEditUser"])
+    ...mapActions("profile", ["setEditUser"]),
+    ...mapActions("auth", ["sendEmailVerification"])
   },
   components: {
     "user-edit": require("src/components/Profile/Modals/UserEditModal").default
@@ -105,6 +119,11 @@ export default {
     @include tablet {
       margin-top: 0;
     }
+  }
+
+  .btns {
+    margin-top: 50px;
+    margin-left: 90px;
   }
 }
 </style>
