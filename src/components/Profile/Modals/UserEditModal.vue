@@ -1,10 +1,24 @@
 <template>
   <q-card
     class="q-pa-sm"
-    style="width: 700px; max-width: 80vw;"
+    style="max-width: 90vw;"
   >
-    <div class="row">
-      <q-card-section class="column">
+    <q-card-section class="row items-center q-pb-none">
+      <div class="text-h6 text-weight-bold">Edit user</div>
+      <q-space />
+      <q-btn
+        @click="setViewWishlist"
+        icon="eva-close-outline"
+        flat
+        round
+        dense
+      />
+    </q-card-section>
+    <q-card-section
+      class="q-mt-lg"
+      horizontal
+    >
+      <q-card-section>
         <q-uploader
           url="http://localhost:8080/"
           style="max-width: 300px; height: 500px;"
@@ -12,7 +26,7 @@
         />
       </q-card-section>
 
-      <q-card-section class="column">
+      <q-card-section class="q-ml-lg">
         <form @submit.prevent="submitForm">
           <q-input
             ref="name"
@@ -41,29 +55,12 @@
             color="primary"
             text-color="secondary"
             type="submit"
-            class="q-mt-xl"
-            no-caps
-          />
-          <q-btn
-            @click="setEditUser"
-            color="primary"
-            label="Cancel"
-            class="q-mt-xl q-ml-md"
-            text-color="primary"
-            size="md"
-            flat
+            class="q-mt-xl float-right"
             no-caps
           />
         </form>
-
       </q-card-section>
-    </div>
-
-    <q-card-actions
-      align="right"
-      class="bg-white text-teal"
-    >
-    </q-card-actions>
+    </q-card-section>
   </q-card>
 </template>
 

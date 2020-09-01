@@ -1,6 +1,5 @@
 <template>
   <q-card
-    flat
     class="q-pa-lg"
     style="width: 700px; max-width: 90vw;"
   >
