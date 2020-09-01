@@ -1,7 +1,8 @@
-@import url("https://use.typekit.net/hcd8vgd.css");
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Roboto:wght@300;400&display=swap');
 
 * {
-  font-family: "skolar-sans-latin", sans-serif;
+  font-family: 'Roboto',
+    sans-serif;
 }
 
 h1,
@@ -10,7 +11,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: oxtail, serif;
+  font-family: 'Arvo',
+    serif;
 }
 
 .small-screen-only {

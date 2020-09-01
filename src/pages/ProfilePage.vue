@@ -32,6 +32,7 @@
 
         <span class="row q-mt-lg btns">
           <q-btn
+            @click="setViewWishlist"
             color="primary"
             icon="eva-star"
             label="Wishlist"
@@ -57,22 +58,27 @@
     <q-dialog :value.sync="editUser">
       <user-edit />
     </q-dialog>
+    <q-dialog :value.sync="viewWishlist">
+      <view-wishlist />
+    </q-dialog>
   </q-page>
 </template>
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
+
 export default {
   computed: {
-    ...mapState("profile", ["editUser"]),
-    ...mapGetters("profile", ["userData"])
+    ...mapState("profile", ["editUser", "viewWishlist"]),
+    ...mapGetters("profile", ["userData"]),
   },
   methods: {
-    ...mapActions("profile", ["setEditUser"]),
+    ...mapActions("profile", ["setEditUser", "setViewWishlist"]),
     ...mapActions("auth", ["sendEmailVerification"])
   },
   components: {
-    "user-edit": require("src/components/Profile/Modals/UserEditModal").default
+    "user-edit": require("src/components/Profile/Modals/UserEditModal").default,
+    "view-wishlist": require("src/components/Profile/Modals/WishlistModal").default,
   }
 }
 </script>

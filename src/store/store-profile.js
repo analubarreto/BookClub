@@ -4,6 +4,7 @@ import { showErrorMessage } from "src/functions/show-error-message";
 
 const state = {
   editUser: false,
+  viewWishlist: true,
   userData: {
     name: "",
     email: "",
@@ -13,6 +14,10 @@ const state = {
 };
 
 const mutations = {
+  setViewWishlist(state, value) {
+    state.viewWishlist = value;
+  },
+
   setEditUser(state, value) {
     state.editUser = value;
   },
@@ -34,6 +39,13 @@ const actions = {
       ? commit("setEditUser", true)
       : commit("setEditUser", false);
   },
+
+  setViewWishlist({ commit }, state) {
+    !state.viewWishlist
+      ? commit("setViewWishlist", true)
+      : commit("setViewWishlist");
+  },
+
   // get user from firebase
   fbReadUser({ commit }) {
     const user = auth.currentUser;
