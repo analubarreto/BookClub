@@ -3,8 +3,8 @@ import { Notify } from "quasar";
 import { showErrorMessage } from "src/functions/show-error-message";
 
 const state = {
-  editUser: true,
-  viewWishlist: false,
+  editUser: false,
+  viewWishlist: true,
   userData: {
     name: "",
     email: "",
