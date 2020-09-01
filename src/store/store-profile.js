@@ -25,6 +25,7 @@ const mutations = {
     state.userData = data;
   }
 };
+
 const actions = {
   updateUser({ dispatch }, payload) {
     dispatch("fbUpdateUser", payload);

@@ -1,66 +1,69 @@
 <template>
   <q-card
     class="q-pa-sm"
-    style="max-width: 90vw;"
+    style="max-width: 80vw;"
   >
-    <q-card-section class="row items-center q-pb-none">
-      <div class="text-h6 text-weight-bold">Edit user</div>
-      <q-space />
-      <q-btn
-        @click="setViewWishlist"
-        icon="eva-close-outline"
-        flat
-        round
-        dense
-      />
-    </q-card-section>
-    <q-card-section
-      class="q-mt-lg"
-      horizontal
-    >
-      <q-card-section>
-        <q-uploader
-          url="http://localhost:8080/"
-          style="max-width: 300px; height: 500px;"
-          color="brown"
-        />
-      </q-card-section>
-
-      <q-card-section class="q-ml-lg">
-        <form @submit.prevent="submitForm">
-          <q-input
-            ref="name"
-            label="Name"
-            hint="Your name must have at least 3 characters"
-            class="q-mb-lg"
-            label-color="primary"
-            v-model="dataToSubmit.name"
-            lazy-rules
-            outlined
-          />
-          <q-input
-            ref="email"
-            label="E-mail"
-            placeholder="something@gmail.com"
-            class="q-mb-lg q-mt-sm"
-            hint="Your e-mail must have an @ and a .com"
-            label-color="primary"
-            v-model="dataToSubmit.email"
-            :rules="[ val => isValidEmailAddress(val) || 'Please enter a valid email address.']"
-            outlined
-            lazy-rules
-          />
+    <div class="row">
+      <div class="col-12">
+        <q-card-section class="items-center q-pb-none">
+          <div class="text-h6 text-weight-bold float-left">Edit user</div>
           <q-btn
-            label="Save"
-            color="primary"
-            text-color="secondary"
-            type="submit"
-            class="q-mt-xl float-right"
-            no-caps
+            @click="setEditUser"
+            icon="eva-close-outline"
+            class="float-right"
+            flat
+            round
+            dense
           />
-        </form>
-      </q-card-section>
-    </q-card-section>
+        </q-card-section>
+      </div>
+      <div class="col-12 col-md-6">
+        <q-card-section>
+          <q-uploader
+            url="http://localhost:8080/"
+            style="max-width: 300px; height: 500px;"
+            color="brown"
+          />
+        </q-card-section>
+      </div>
+      <div class="col-12 col-md-6">
+        <q-card-section>
+          <form @submit.prevent="submitForm">
+            <q-input
+              ref="name"
+              label="Name"
+              hint="Your name must have at least 3 characters"
+              class="q-mb-lg"
+              label-color="primary"
+              v-model="dataToSubmit.name"
+              lazy-rules
+              outlined
+            />
+            <q-input
+              ref="email"
+              label="E-mail"
+              placeholder="something@gmail.com"
+              class="q-mb-lg q-mt-sm"
+              hint="Your e-mail must have an @ and a .com"
+              label-color="primary"
+              v-model="dataToSubmit.email"
+              :rules="[ val => isValidEmailAddress(val) || 'Please enter a valid email address.']"
+              outlined
+              lazy-rules
+            />
+            <p class="text-body2 info-text">** To change your password, please logout, click <span class="text-bold">forgot password</span> and follow the instructions. **</p>
+            <q-btn
+              label="Save"
+              color="primary"
+              text-color="secondary"
+              type="submit"
+              class="q-mt-xl float-right"
+              no-caps
+            />
+          </form>
+        </q-card-section>
+      </div>
+    </div>
   </q-card>
 </template>
 
@@ -103,3 +106,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.info-text {
+  color: $info;
+}
+</style>
