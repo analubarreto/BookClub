@@ -32,8 +32,9 @@
     </q-card-section>
     <q-card-actions class="float-right">
       <q-btn
-        no-caps
-        color="blue"
+        to="/books"
+        color="warning"
+        text-color="black"
       >Go to Book List</q-btn>
     </q-card-actions>
   </q-card>
