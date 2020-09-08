@@ -4,7 +4,7 @@ import { showErrorMessage } from "src/functions/show-error-message";
 
 const state = {
   editUser: false,
-  viewWishlist: true,
+  viewWishlist: false,
   userData: {
     name: "",
     email: "",
@@ -103,6 +103,7 @@ const actions = {
     console.log(user.email);
   }
 };
+
 const getters = {
   userData: state => {
     return state.userData;

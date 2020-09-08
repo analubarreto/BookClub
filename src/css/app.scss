@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Roboto:wght@300;400&display=swap');
+// Fallback google fonts
+// @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+@import url("https://use.typekit.net/hcd8vgd.css");
 
 * {
-  font-family: 'Roboto',
+  // font-family: 'Roboto',
+  //   sans-serif;
+  font-family: "skolar-sans-latin",
     sans-serif;
 }
 
@@ -11,7 +16,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Arvo',
+  // font-family: 'Arvo',
+  //   serif;
+  font-family: oxtail,
     serif;
 }
 

@@ -75,7 +75,8 @@ export default {
 }
 
 a.app-title {
-  font-family: "Arvo", serif;
+  // font-family: "Arvo", serif;
+  font-family: oxtail, serif;
   font-size: 30px;
 }
 .link {
